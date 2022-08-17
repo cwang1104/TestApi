@@ -1,0 +1,57 @@
+syntax="proto3";
+package pblogin;
+option go_package = ".proto/login;pbLogin";
+
+message UserInfo {
+  int32 UID = 1;
+  string NickName = 3;
+  string HeadUrl = 4;
+  int32 Gender = 5;
+  string Posizton = 6;
+  string Birthday = 7;
+  string Email = 8;
+  string Introduce = 9;
+  int32 Love = 10;
+  float  Score10 = 11;
+  int32 TotalScore = 12;
+  int32 TotalScoreCount = 13;
+  int32 TotalDynamicLoveCount = 14;
+}
+
+message AccountRegisterReq {
+  string Phone = 1;
+  int32 Platform = 2;
+}
+
+message UserInfoReq {
+  int32 UID = 1;
+}
+
+message AccountRegisterResp {
+  int32 ErrCode = 1;
+  string ErrMsg = 2;
+  UserInfo Data = 3;
+}
+
+message ModifyUserInfoReq {
+  int32  UID = 1;
+  string NickName = 2;
+  string HeadURL = 3;
+  int32  Gender = 4;
+  string Position = 5;
+  string Birthday = 6;
+  string Email = 7;
+  string Introduce = 8;
+}
+
+
+message ModifyUserInfoResp {
+  int32  ErrCode = 1;
+  string ErrMsg = 2;
+}
+
+service UserLogin{
+  rpc AccountRegister (AccountRegisterReq) returns (AccountRegisterResp);
+  rpc ModifyUserInfo (ModifyUserInfoReq) returns (ModifyUserInfoResp);
+  rpc GetUserInfo (UserInfoReq) returns (AccountRegisterResp);
+}
